@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LifeDisplay : MonoBehaviour
 {
-    private int life = 3;
+    public int life = 3;
     private bool move = false;
     private bool direction;
     private float timeCount = 0;
@@ -41,21 +41,21 @@ public class LifeDisplay : MonoBehaviour
 
     public void SetLife(int value)
     {
-        life += value;
-        
-        if(life > 3)
-            life = 3;
+        if(life + value <= 3 && life + value >= 0)
+        {
+            life += value;
+            move = true;
+            start = from.localRotation;
+            if (value > 0)
+                to = Quaternion.Euler(90f, 0f, 0f) * start;
+            else
+                to = Quaternion.Euler(-90f, 0f, 0f) * start;
+        }
 
-        move = true;
-
-        start = from.localRotation;
-        if (value > 0)
-            to = Quaternion.Euler(90f, 0f, 0f) * start;
-        else
-            to = Quaternion.Euler(-90f, 0f, 0f) * start;
-
-        if (life < 1)
+        if(life == 0)
+        {
             Lose();
+        }
     }
 
     private void Lose()
