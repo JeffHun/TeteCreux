@@ -21,7 +21,6 @@ public class LifeDisplay : MonoBehaviour
     private void Awake()
     {
         from = transform;
-        Debug.Log(start.y);
     }
     
     void Update()

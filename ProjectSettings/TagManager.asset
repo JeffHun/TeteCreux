@@ -6,6 +6,8 @@ TagManager:
   tags:
   - BadWall
   - GoodWall
+  - BadWoodenSign
+  - GoodWoodenSign
   layers:
   - Default
   - TransparentFX

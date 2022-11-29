@@ -8,15 +8,38 @@ public class SpawnerBehavior : MonoBehaviour
 {
     public GameObject goodWall;
     public GameObject badWall;
+    public GameObject goodWoodenSign;
+    public GameObject badWoodenSign;
     private int rand;
+    private int rand2;
     public int treadmillWidth;
     public float spaceBetweenWall;
     public float spawnFrequency;
-    public float firstSpawnDelay;
 
     void Start()
     {
-        InvokeRepeating("SpawnWall", firstSpawnDelay, spawnFrequency);
+        StartCoroutine(Coroutine(spawnFrequency));
+    }
+
+    private IEnumerator Coroutine(float time)
+    {
+        yield return new WaitForSeconds(time);
+        rand = UnityEngine.Random.Range(0, 2);
+        if(rand==1)
+            SpanwWoodenSign();
+        else
+            SpawnWall();
+        StartCoroutine(Coroutine(spawnFrequency));
+    }
+
+    private void SpanwWoodenSign()
+    {
+        rand = UnityEngine.Random.Range(0, treadmillWidth);
+        rand2 = UnityEngine.Random.Range(0, 2);
+        if(rand2 == 1)
+            Instantiate(goodWoodenSign, new Vector3(transform.position.x + rand * spaceBetweenWall, transform.position.y, transform.position.z), Quaternion.identity);
+        else
+            Instantiate(badWoodenSign, new Vector3(transform.position.x + rand * spaceBetweenWall, transform.position.y, transform.position.z), Quaternion.identity);
     }
 
     private void SpawnWall()
