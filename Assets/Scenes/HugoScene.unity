@@ -1021,7 +1021,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21fbd0ee84ca6784891861a559de5575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 10
+  life: 3
+  rotationSpeed: 5
 --- !u!1 &740080527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,10 +1414,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goodWall: {fileID: 2445607360491302996, guid: a61846d13257a2a4ea76034d04eb00aa, type: 3}
   badWall: {fileID: 5219774450885792138, guid: f5175a7e28906854484f2a89264e2cd7, type: 3}
+  goodWoodenSign: {fileID: 6659960581911729112, guid: 4164c7a4805f2e94296d671293dfc731, type: 3}
+  badWoodenSign: {fileID: 3110368814177731107, guid: ea2f5a4d82ff4bb42a4094c3027a1df5, type: 3}
   treadmillWidth: 3
   spaceBetweenWall: 1
-  spawnFrequency: 2
-  firstSpawnDelay: 1
+  spawnFrequency: 1.5
 --- !u!4 &1263720431
 Transform:
   m_ObjectHideFlags: 0
