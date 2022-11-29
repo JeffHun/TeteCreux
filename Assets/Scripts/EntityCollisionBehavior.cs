@@ -5,9 +5,10 @@ using UnityEngine;
 public class EntityCollisionBehavior : MonoBehaviour
 {
     public GameObject lifeDisplay;
+    public GameObject Headbutt;
+
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -21,6 +22,19 @@ public class EntityCollisionBehavior : MonoBehaviour
         if (collisionedObject.CompareTag("BadWall"))
             lifeDisplay.GetComponent<LifeDisplay>().SetLife(-1);
         if (collisionedObject.CompareTag("GoodWall"))
-            lifeDisplay.GetComponent<LifeDisplay>().SetLife(+1);
+        {
+            if (Headbutt.GetComponent<Headbutt>().dist > 0.07f)
+            {
+                lifeDisplay.GetComponent<LifeDisplay>().SetLife(+1);
+                Debug.Log("good velocity");
+            }
+            else
+            {
+                lifeDisplay.GetComponent<LifeDisplay>().SetLife(-1);
+                Debug.Log("bad");
+            }
+        } 
+        
+        
     }
 }
