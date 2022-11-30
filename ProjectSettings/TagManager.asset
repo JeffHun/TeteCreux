@@ -8,8 +8,7 @@ TagManager:
   - GoodWall
   - BadWoodenSign
   - GoodWoodenSign
-  - RightHand
-  - LeftHand
+  - Hand
   layers:
   - Default
   - TransparentFX

@@ -3,21 +3,25 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class LifeDisplay : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public int life = 3;
     private bool move = false;
-    private bool direction;
     private float timeCount = 0;
     public float rotationSpeed;
     private Transform from;
     private Quaternion to;
     private Quaternion start;
+    public float speed;
+    public float spawnFrequency;
+    private int score = 0;
 
-    void Start()
+    public void SetScore(int aScore)
     {
-        
+        score += aScore;
+        Debug.Log(score);
     }
+
     private void Awake()
     {
         from = transform;

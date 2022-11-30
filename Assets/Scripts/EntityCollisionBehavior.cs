@@ -4,36 +4,43 @@ using UnityEngine;
 
 public class EntityCollisionBehavior : MonoBehaviour
 {
-    public GameObject lifeDisplay;
+    public GameObject gameManager;
     public GameObject Headbutt;
 
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void Collision(GameObject collisionedObject)
+    public void Collision(GameObject collisionedObject, bool hand)
     {
         if (collisionedObject.CompareTag("BadWall"))
-            lifeDisplay.GetComponent<LifeDisplay>().SetLife(-1);
+        {
+            gameManager.GetComponent<GameManager>().SetLife(-1);
+            gameManager.GetComponent<GameManager>().SetScore(-150);
+        }
         if (collisionedObject.CompareTag("GoodWall"))
         {
             if (Headbutt.GetComponent<Headbutt>().dist > 0.07f)
             {
-                Debug.Log("good headbang");
+                gameManager.GetComponent<GameManager>().SetScore(150);
             }
             else
             {
-                lifeDisplay.GetComponent<LifeDisplay>().SetLife(-1);
-                Debug.Log("bad headbang");
+                gameManager.GetComponent<GameManager>().SetLife(-1);
+                gameManager.GetComponent<GameManager>().SetScore(-75);
             }
-        } 
-        
-        
+        }
+        if (collisionedObject.CompareTag("BadWoodenSign") && !hand)
+        {
+            gameManager.GetComponent<GameManager>().SetLife(-1);
+            gameManager.GetComponent<GameManager>().SetScore(-50);
+        }
+
+        if (collisionedObject.CompareTag("GoodWoodenSign"))
+        {
+            gameManager.GetComponent<GameManager>().SetScore(-50);
+        }
+
+        if (collisionedObject.CompareTag("BadWoodenSign") && hand)
+        {
+            gameManager.GetComponent<GameManager>().SetScore(+50);
+        }
+
     }
 }

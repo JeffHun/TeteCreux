@@ -7,10 +7,9 @@ public class HandTrigger : MonoBehaviour
 {
     public void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("GoodWall"));
+        if (collision.tag == "GoodWall")
         {
             collision.GetComponent<WallBehavior>().HandDetected();
         }
-
     }
 }
