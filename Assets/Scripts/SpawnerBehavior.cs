@@ -17,34 +17,44 @@ public class SpawnerBehavior : MonoBehaviour
     public int treadmillWidth;
     public float spaceBetweenWall;
     public float spawnFrequency;
+    private bool loose;
+    private float timer;
 
     private void Update()
     {
         spawnFrequency = gameManager.GetComponent<GameManager>().spawnFrequency;
+        loose = gameManager.GetComponent<GameManager>().GetLoose();
+
+        timer += Time.deltaTime;
+        if(timer > spawnFrequency && !loose)
+        {
+            rand = UnityEngine.Random.Range(0, 2);
+            if (rand == 1)
+                SpanwWoodenSign();
+            else
+                SpawnWall();
+            timer = 0;
+        }
     }
 
     void Start()
     {
-        StartCoroutine(Coroutine(spawnFrequency));
-    }
-
-    private IEnumerator Coroutine(float time)
-    {
-        yield return new WaitForSeconds(time);
-        rand = UnityEngine.Random.Range(0, 2);
-        if(rand==1)
-            SpanwWoodenSign();
-        else
-            SpawnWall();
-        StartCoroutine(Coroutine(spawnFrequency));
+        loose = gameManager.GetComponent<GameManager>().GetLoose();
     }
 
     private void SpanwWoodenSign()
     {
         rand = UnityEngine.Random.Range(0, treadmillWidth);
         rand2 = UnityEngine.Random.Range(0, 2);
-        rand3 = UnityEngine.Random.Range(1, 3);
-        for(int i = 0; i< rand3; i++)
+        //rand3 = UnityEngine.Random.Range(1, 3);
+        if (rand2 == 1)
+        {
+            Instantiate(goodWoodenSign, new Vector3(transform.position.x + rand * spaceBetweenWall, transform.position.y, transform.position.z), Quaternion.identity);
+        }
+        else
+            Instantiate(badWoodenSign, new Vector3(transform.position.x + rand * spaceBetweenWall, transform.position.y, transform.position.z), Quaternion.identity);
+
+        /*for (int i = 0; i< rand3; i++)
         {
             if (rand2 == 1)
             {
@@ -52,7 +62,7 @@ public class SpawnerBehavior : MonoBehaviour
             }
             else
                 Instantiate(badWoodenSign, new Vector3(transform.position.x + rand * spaceBetweenWall, transform.position.y, transform.position.z), Quaternion.identity);
-        }
+        }*/
     }
 
     private void SpawnWall()

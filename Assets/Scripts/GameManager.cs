@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     public float speed;
     public float spawnFrequency;
     private int score = 0;
+    public AudioClip bigFart;
+    public AudioSource audioSource;
+    private bool loose = false;
 
     public void SetScore(int aScore)
     {
@@ -64,5 +67,15 @@ public class GameManager : MonoBehaviour
     private void Lose()
     {
         Debug.Log("Lose");
+        loose = true;
+        speed = 0;
+        spawnFrequency = 0;
+        audioSource.clip = bigFart;
+        audioSource.Play();
+    }
+
+    public bool GetLoose()
+    {
+        return loose;
     }
 }
