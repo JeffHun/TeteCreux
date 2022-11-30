@@ -34,8 +34,6 @@ public class Headbutt : MonoBehaviour
 
             dist = Vector3.Distance(pos1, pos2); //distance between pos1 and pos2 in 5s
 
-            Debug.Log(dist);
-
             posi = true;
         }
     }

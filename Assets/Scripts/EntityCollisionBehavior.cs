@@ -25,13 +25,12 @@ public class EntityCollisionBehavior : MonoBehaviour
         {
             if (Headbutt.GetComponent<Headbutt>().dist > 0.07f)
             {
-                lifeDisplay.GetComponent<LifeDisplay>().SetLife(+1);
-                Debug.Log("good velocity");
+                Debug.Log("good headbang");
             }
             else
             {
                 lifeDisplay.GetComponent<LifeDisplay>().SetLife(-1);
-                Debug.Log("bad");
+                Debug.Log("bad headbang");
             }
         } 
         

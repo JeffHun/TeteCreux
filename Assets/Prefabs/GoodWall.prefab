@@ -113,6 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   particuleSystem: {fileID: 8943778086915351877, guid: d31591ec86fc0e44d8edec5b69c781f9, type: 3}
+  handCount: 0
 --- !u!54 &-5186921096400921325
 Rigidbody:
   m_ObjectHideFlags: 0

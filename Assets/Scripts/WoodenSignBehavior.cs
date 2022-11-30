@@ -19,7 +19,7 @@ public class WoodenSignBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Player"));
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("RightHand") || collision.gameObject.CompareTag("LeftHand")) ;
         {
             Destroy(gameObject);
         }
