@@ -10,6 +10,8 @@ public class WallBehavior : MonoBehaviour
     private Rigidbody rb;
     public int handCount;
     public GameObject gameManager;
+    public AudioSource audiosource;
+    public AudioClip breakingWall;
 
     void Start()
     {
@@ -33,8 +35,9 @@ public class WallBehavior : MonoBehaviour
 
         if (collision.CompareTag("Hand") && handCount == 2)
         {
-            //player.GetComponent<EntityCollisionBehavior>().Collision(gameObject);
             Instantiate(particuleSystem, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            audiosource.clip = breakingWall;
+            audiosource.Play();
             Destroy(gameObject);
         }
     }
