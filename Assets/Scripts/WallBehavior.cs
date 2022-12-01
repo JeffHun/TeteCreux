@@ -36,6 +36,7 @@ public class WallBehavior : MonoBehaviour
         if (collision.CompareTag("Hand") && handCount == 2)
         {
             Instantiate(particuleSystem, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            gameManager.GetComponent<GameManager>().SetScore(50);
             audiosource.clip = breakingWall;
             audiosource.Play();
             Destroy(gameObject);

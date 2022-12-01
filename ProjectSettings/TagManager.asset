@@ -9,6 +9,7 @@ TagManager:
   - BadWoodenSign
   - GoodWoodenSign
   - Hand
+  - DeathWall
   layers:
   - Default
   - TransparentFX

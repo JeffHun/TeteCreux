@@ -6,7 +6,6 @@ public class BassActivator : MonoBehaviour
 {
     public AudioClip bassBase;
     public AudioSource audioSource;
-    public Transform posPlayer;
     public LayerMask layerMask;
 
     void Start()
@@ -15,7 +14,6 @@ public class BassActivator : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.position = posPlayer.position;
         RaycastHit hit;
         if (Physics.Raycast(transform.position, new Vector3(0, 0, 1), out hit, Mathf.Infinity, layerMask))
         {

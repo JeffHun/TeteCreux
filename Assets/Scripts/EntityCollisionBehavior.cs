@@ -19,7 +19,7 @@ public class EntityCollisionBehavior : MonoBehaviour
         if (collisionedObject.CompareTag("BadWall"))
         {
             gameManager.GetComponent<GameManager>().SetLife(-1);
-            gameManager.GetComponent<GameManager>().SetScore(-150);
+            gameManager.GetComponent<GameManager>().SetScore(-50);
             audioSource.clip = damage;
             audioSource.Play();
             secondAudioSource.clip = breakingWall;
@@ -30,7 +30,7 @@ public class EntityCollisionBehavior : MonoBehaviour
             Debug.Log(Headbutt.GetComponent<Headbutt>().dist);
             if (Headbutt.GetComponent<Headbutt>().dist > 0.07f)
             {
-                gameManager.GetComponent<GameManager>().SetScore(150);
+                gameManager.GetComponent<GameManager>().SetScore(100);
                 Debug.Log("Good velocity bien joué");
                 audioSource.clip = monkeyCrowd;
                 audioSource.Play();
@@ -40,7 +40,7 @@ public class EntityCollisionBehavior : MonoBehaviour
             else
             {
                 gameManager.GetComponent<GameManager>().SetLife(-1);
-                gameManager.GetComponent<GameManager>().SetScore(-75);
+                gameManager.GetComponent<GameManager>().SetScore(-50);
                 audioSource.clip = damage;
                 audioSource.Play();
                 secondAudioSource.clip = breakingWall;
@@ -64,7 +64,7 @@ public class EntityCollisionBehavior : MonoBehaviour
 
         if (collisionedObject.CompareTag("GoodWoodenSign"))
         {
-            gameManager.GetComponent<GameManager>().SetScore(-50);
+            gameManager.GetComponent<GameManager>().SetScore(-75);
             audioSource.clip = booCrowd;
             audioSource.Play();
             secondAudioSource.clip = handWoodenSlap;
