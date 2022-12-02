@@ -102,9 +102,10 @@ public class SpawnerBehavior : MonoBehaviour
                 entity.tag = "GoodWall";
             }else
             {
-                Instantiate(spikes, new Vector3(transform.position.x + i * spaceBetweenWall, transform.position.y, transform.position.z+1.5f), Quaternion.identity);
+                Instantiate(spikes, new Vector3(transform.position.x + i * spaceBetweenWall, transform.position.y, transform.position.z+1.75f), Quaternion.identity);
                 entity = Instantiate(walls[rand2], new Vector3(transform.position.x + i * spaceBetweenWall, transform.position.y, transform.position.z), Quaternion.identity);
                 entity.tag = "BadWall";
+                entity.layer = 6;
             }
         }
     }

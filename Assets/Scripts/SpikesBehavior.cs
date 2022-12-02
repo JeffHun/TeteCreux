@@ -22,6 +22,7 @@ public class SpikesBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        Destroy(gameObject);
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Hand"))
+            Destroy(gameObject);
     }
 }

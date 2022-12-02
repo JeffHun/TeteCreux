@@ -9,23 +9,32 @@ public class Public : MonoBehaviour
     public float intensity = 0.5f;
     public float rotationSpeed = 1f;
 
+    private float rand;
+
     private float wave;
     private Transform tf;
+    private float tfOrigin;
+    private float tfOrigin2;
 
     private void Start()
     {
         tf = transform;
+        rand = Random.Range(0.5f, 2.0f);
+
+        tfOrigin = transform.position.y;
+        tfOrigin2 = transform.rotation.eulerAngles.z;
     }
 
     void FixedUpdate()
     {
-        wave = Mathf.PingPong(Time.time * speed, intensity);
+        wave = Mathf.PingPong(Time.time * speed * rand, intensity);
         
         //People Translate
-        tf.position = new Vector3(tf.position.x, wave, tf.position.z);
-
+        //ftf.position = new Vector3(tf.position.x, tf.position.y + wave, tf.position.z);
+        tf.position = new Vector3(tf.position.x, tfOrigin + wave, tf.position.z);
+        
         //People Rotation
-        tf.localRotation = Quaternion.Euler(tf.rotation.eulerAngles.x, tf.rotation.eulerAngles.y, rotationIntensity * Mathf.Sin(Time.time * rotationSpeed));
+        tf.localRotation = Quaternion.Euler(tf.rotation.eulerAngles.x, tf.rotation.eulerAngles.y, tfOrigin2 + rotationIntensity + rand * 10 * Mathf.Sin(Time.time * rotationSpeed));
     }
 
     
