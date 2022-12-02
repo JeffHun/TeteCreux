@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    path: Assets/Scenes/TeteCreux.unity
+    guid: 043c3ae07faf41947a27446b3bed72b7
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 3c5ba28b9ed8a054c91ce9b33e6ca0cd, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 582cf873f2bad574a9f0bbbcd103ebbe, type: 2}

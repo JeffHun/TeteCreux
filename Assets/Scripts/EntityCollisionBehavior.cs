@@ -14,6 +14,9 @@ public class EntityCollisionBehavior : MonoBehaviour
     public AudioClip breakingWall;
     public AudioClip booCrowd;
 
+    public float intensity = .5f;
+    public float rotationSpeed = 1f;
+    public float speed = .5f;
     public void Collision(GameObject collisionedObject, bool hand)
     {
         if (collisionedObject.CompareTag("BadWall"))
@@ -36,6 +39,9 @@ public class EntityCollisionBehavior : MonoBehaviour
                 audioSource.Play();
                 secondAudioSource.clip = breakingWall;
                 secondAudioSource.Play();
+                intensity = 1f;
+                rotationSpeed = 2f;
+                speed = 1f;
             }
             else
             {
@@ -70,7 +76,21 @@ public class EntityCollisionBehavior : MonoBehaviour
             secondAudioSource.clip = handWoodenSlap;
             secondAudioSource.Play();
         }
+    }
 
-
+    private void Update()
+    {
+        if(audioSource.clip == monkeyCrowd && !audioSource.isPlaying)
+        {
+            intensity = .5f;
+            rotationSpeed = 1f;
+            speed = .5f;
+        }
+        if (gameManager.GetComponent<GameManager>().GetLoose())
+        {
+            intensity = .25f;
+            rotationSpeed = .5f;
+            speed = .25f;
+        }
     }
 }

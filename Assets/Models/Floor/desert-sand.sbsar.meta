@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a5d0e6df7b758ef49900b36eb22ba712
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: dda12f74ff9116a42b23482252b2c482, type: 3}
+  _instancesCopy:
+  - {fileID: 11400000, guid: 3b20cf6d738d1f3439631ab5fa1cb014, type: 2}
+  _fileAsset: {instanceID: 0}
+  _assetPath: Assets/Models/Floor/desert-sand.sbsar

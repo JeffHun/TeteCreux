@@ -16,6 +16,8 @@ public class Public : MonoBehaviour
     private float tfOrigin;
     private float tfOrigin2;
 
+    public GameObject player;
+
     private void Start()
     {
         tf = transform;
@@ -23,6 +25,13 @@ public class Public : MonoBehaviour
 
         tfOrigin = transform.position.y;
         tfOrigin2 = transform.rotation.eulerAngles.z;
+    }
+
+    private void Update()
+    {
+        intensity = player.GetComponent<EntityCollisionBehavior>().intensity;
+        rotationSpeed = player.GetComponent<EntityCollisionBehavior>().rotationSpeed;
+        speed = player.GetComponent<EntityCollisionBehavior>().speed;
     }
 
     void FixedUpdate()
