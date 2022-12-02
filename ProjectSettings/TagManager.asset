@@ -10,6 +10,7 @@ TagManager:
   - GoodWoodenSign
   - Hand
   - DeathWall
+  - NewSpawnFloor
   layers:
   - Default
   - TransparentFX

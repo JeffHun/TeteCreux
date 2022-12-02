@@ -15,7 +15,6 @@ public class FloorSpawner : MonoBehaviour
     public void SpawnTile()
     {
         temp = Instantiate(floorTile, nextSpawnPoint, Quaternion.identity);
-        nextSpawnPoint = temp.transform.GetChild(1).transform.position;
     }
 
     private void Start()

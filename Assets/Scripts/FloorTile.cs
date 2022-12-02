@@ -19,6 +19,11 @@ public class FloorTile : MonoBehaviour
     {
         if (other.CompareTag("DeathWall"))
         {
+            Destroy(gameObject);
+        }
+
+        if(other.CompareTag("NewSpawnFloor"))
+        {
             floorSpawner.SpawnTile();
         }
     }
