@@ -19,10 +19,13 @@ public class GameManager : MonoBehaviour
     public AudioSource audioSource;
     private bool loose = false;
 
+    public GameObject scoreBehavior;
+
     public void SetScore(int aScore)
     {
         score += aScore;
         Debug.Log(score);
+        scoreBehavior.GetComponent<ScoreBehavior>().ScoreUpdate(score);
     }
 
     private void Awake()

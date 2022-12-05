@@ -13,6 +13,8 @@ public class WallBehavior : MonoBehaviour
     public AudioSource audiosource;
     public AudioClip breakingWall;
 
+    public GameObject judgePlus50;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -36,9 +38,11 @@ public class WallBehavior : MonoBehaviour
         if (collision.CompareTag("Hand") && handCount == 2)
         {
             Instantiate(particuleSystem, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-            gameManager.GetComponent<GameManager>().SetScore(50);
+            gameManager.GetComponent<GameManager>().SetScore(5);
             audiosource.clip = breakingWall;
             audiosource.Play();
+            judgePlus50.GetComponent<JudgeBehavior>().JudgeStand();
+
             Destroy(gameObject);
         }
     }
