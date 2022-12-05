@@ -9,11 +9,14 @@ public class SpawnerBehavior : MonoBehaviour
 {
     public List<GameObject> walls = new List<GameObject>();
     public GameObject spikes;
+    private GameObject secondEntity;
 
     private GameObject entity;
 
     public List<GameObject> goodPeoples = new List<GameObject>();
     public List<GameObject> badPeoples = new List<GameObject>();
+
+    private List<GameObject> clones = new List<GameObject>();
 
     public GameObject gameManager;
     private int rand;
@@ -44,28 +47,6 @@ public class SpawnerBehavior : MonoBehaviour
                 SpawnWall();
             timer = 0;
         }
-
-        /*if(timer > spawnFrequency * 0.5 && !loose && rand == 1)
-        {
-            SpanwWoodenSign();
-            repeat = true;
-        }
-
-        if(timer > spawnFrequency && repeat && !loose)
-        {
-            SpanwWoodenSign();
-            repeat = false;
-            timer = 0;
-        }
-        else if(timer > spawnFrequency && !loose)
-        {
-            rand = UnityEngine.Random.Range(0, 2);
-            if (rand == 1)
-                SpanwWoodenSign();
-            else
-                SpawnWall();
-            timer = 0;
-        }*/
     }
 
     void Start()
@@ -82,11 +63,13 @@ public class SpawnerBehavior : MonoBehaviour
         {
             entity = Instantiate(goodPeoples[rand2], new Vector3(transform.position.x + rand * spaceBetweenWall, transform.position.y, transform.position.z), Quaternion.identity);
             entity.tag = "GoodWoodenSign";
+            clones.Add(entity);
         }
         else
         {
             entity = Instantiate(badPeoples[rand3], new Vector3(transform.position.x + rand * spaceBetweenWall, transform.position.y, transform.position.z), Quaternion.identity);
             entity.tag = "BadWoodenSign";
+            clones.Add(entity);
         }
     }
 
@@ -100,13 +83,22 @@ public class SpawnerBehavior : MonoBehaviour
             {
                 entity = Instantiate(walls[rand2], new Vector3(transform.position.x + i * spaceBetweenWall, transform.position.y, transform.position.z), Quaternion.identity);
                 entity.tag = "GoodWall";
-            }else
+                clones.Add(entity);
+            }
+            else
             {
-                Instantiate(spikes, new Vector3(transform.position.x + i * spaceBetweenWall, transform.position.y, transform.position.z+1.75f), Quaternion.identity);
                 entity = Instantiate(walls[rand2], new Vector3(transform.position.x + i * spaceBetweenWall, transform.position.y, transform.position.z), Quaternion.identity);
+                secondEntity = Instantiate(spikes, new Vector3(transform.position.x + i * spaceBetweenWall, transform.position.y, transform.position.z+1.75f), Quaternion.identity);
                 entity.tag = "BadWall";
                 entity.layer = 6;
+                clones.Add(entity);
+                clones.Add(secondEntity);
             }
         }
+    }
+
+    public List<GameObject> GetClones()
+    {
+        return clones;
     }
 }

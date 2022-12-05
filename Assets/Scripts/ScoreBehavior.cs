@@ -38,7 +38,6 @@ public class ScoreBehavior : MonoBehaviour
             scoreA.text = score.ToString();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (move)

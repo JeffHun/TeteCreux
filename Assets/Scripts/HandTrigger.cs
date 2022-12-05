@@ -11,5 +11,9 @@ public class HandTrigger : MonoBehaviour
         {
             collision.GetComponent<WallBehavior>().HandDetected();
         }
+        if (collision.tag == "ReplayOrQuit")
+        {
+            collision.GetComponent<ReplayOrQuit>().HandDetected();
+        }
     }
 }

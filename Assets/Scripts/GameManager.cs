@@ -18,8 +18,14 @@ public class GameManager : MonoBehaviour
     public AudioClip loosed;
     public AudioSource audioSource;
     private bool loose = false;
-
     public GameObject scoreBehavior;
+    public GameObject spawnBehavior;
+
+    private List<GameObject> clones = new List<GameObject>();
+
+    private float originalSpeed;
+    private float originalFrequency;
+
 
     public void SetScore(int aScore)
     {
@@ -31,6 +37,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         from = transform;
+        originalFrequency = spawnFrequency;
+        originalSpeed = speed;
     }
     
     void Update()
@@ -80,5 +88,27 @@ public class GameManager : MonoBehaviour
     public bool GetLoose()
     {
         return loose;
+    }
+
+    public void Replay()
+    {
+        life = 3;
+        SetLife(0);
+        score = 0;
+        scoreBehavior.GetComponent<ScoreBehavior>().ScoreUpdate(0);   
+        speed = originalSpeed;
+        spawnFrequency = originalFrequency;
+        loose = false;
+        clones = spawnBehavior.GetComponent<SpawnerBehavior>().GetClones();
+        for(int i = 0; i < clones.Count; i++)
+        {
+            Destroy(clones[i]);
+        }
+        //si je suis pas à trois je setlife jus'quà l'etre
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
