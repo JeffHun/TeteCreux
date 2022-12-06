@@ -28,7 +28,6 @@ public class SpawnerBehavior : MonoBehaviour
     private bool loose;
     private bool repeat = false;
     private float timer;
-    public bool testAb;
 
     private void Update()
     {
@@ -57,14 +56,13 @@ public class SpawnerBehavior : MonoBehaviour
 
     private void SpanwWoodenSign()
     {
-        if(testAb)
-            rand = UnityEngine.Random.Range(0, treadmillWidth-1);
-        else
-            rand = UnityEngine.Random.Range(0, treadmillWidth);
-        rand2 = UnityEngine.Random.Range(0, goodPeoples.Count);
+        rand = UnityEngine.Random.Range(0, treadmillWidth);
+        //rand2 = UnityEngine.Random.Range(0, 2);
+        rand2 = 0;
         rand3 = UnityEngine.Random.Range(0, badPeoples.Count);
         if (rand2 == 1)
         {
+            rand2 = UnityEngine.Random.Range(0, goodPeoples.Count);
             entity = Instantiate(goodPeoples[rand2], new Vector3(transform.position.x + rand * spaceBetweenWall, transform.position.y, transform.position.z), Quaternion.identity);
             entity.tag = "GoodWoodenSign";
             clones.Add(entity);

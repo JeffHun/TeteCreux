@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WoodenSignBehavior : MonoBehaviour
@@ -9,7 +11,7 @@ public class WoodenSignBehavior : MonoBehaviour
     public GameObject player;
     public GameObject gameManager;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }

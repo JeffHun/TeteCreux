@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     private float originalSpeed;
     private float originalFrequency;
 
+    private float timer;
+    public float coef;
 
     public void SetScore(int aScore)
     {
@@ -52,8 +54,16 @@ public class GameManager : MonoBehaviour
                 move = false;
                 timeCount = 0;
             }
-
         }
+
+        timer += Time.deltaTime;
+        if (timer > 1 && !loose)
+        {
+            speed += coef;
+            spawnFrequency -= coef;
+            timer = 0;
+        }
+
     }
 
     public void SetLife(int value)
@@ -82,6 +92,12 @@ public class GameManager : MonoBehaviour
         spawnFrequency = 0;
         audioSource.clip = loosed;
         audioSource.Play();
+
+        clones = spawnBehavior.GetComponent<SpawnerBehavior>().GetClones();
+        for (int i = 0; i < clones.Count; i++)
+        {
+            Destroy(clones[i]);
+        }
     }
 
     public bool GetLoose()
@@ -97,11 +113,6 @@ public class GameManager : MonoBehaviour
         speed = originalSpeed;
         spawnFrequency = originalFrequency;
         loose = false;
-        clones = spawnBehavior.GetComponent<SpawnerBehavior>().GetClones();
-        for(int i = 0; i < clones.Count; i++)
-        {
-            Destroy(clones[i]);
-        }
     }
 
     IEnumerator ReloadLife()

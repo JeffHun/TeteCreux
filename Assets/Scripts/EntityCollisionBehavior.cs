@@ -37,7 +37,6 @@ public class EntityCollisionBehavior : MonoBehaviour
         }
         if (collisionedObject.CompareTag("GoodWall"))
         {
-            Debug.Log(Headbutt.GetComponent<Headbutt>().dist);
             if (Headbutt.GetComponent<Headbutt>().dist > 0.07f)
             {
                 gameManager.GetComponent<GameManager>().SetScore(10);
