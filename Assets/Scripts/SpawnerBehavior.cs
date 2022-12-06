@@ -28,6 +28,7 @@ public class SpawnerBehavior : MonoBehaviour
     private bool loose;
     private bool repeat = false;
     private float timer;
+    public bool testAb;
 
     private void Update()
     {
@@ -35,11 +36,11 @@ public class SpawnerBehavior : MonoBehaviour
         loose = gameManager.GetComponent<GameManager>().GetLoose();
 
         timer += Time.deltaTime;
-        rand = UnityEngine.Random.Range(0, 2);
+        //rand = UnityEngine.Random.Range(0, 2);
 
         if (timer > spawnFrequency && !loose)
         {
-            rand = UnityEngine.Random.Range(0, 2);
+            //rand = UnityEngine.Random.Range(0, 2);
 
             if (rand == 1)
                 SpanwWoodenSign();
@@ -56,7 +57,10 @@ public class SpawnerBehavior : MonoBehaviour
 
     private void SpanwWoodenSign()
     {
-        rand = UnityEngine.Random.Range(0, treadmillWidth);
+        if(testAb)
+            rand = UnityEngine.Random.Range(0, treadmillWidth-1);
+        else
+            rand = UnityEngine.Random.Range(0, treadmillWidth);
         rand2 = UnityEngine.Random.Range(0, goodPeoples.Count);
         rand3 = UnityEngine.Random.Range(0, badPeoples.Count);
         if (rand2 == 1)
@@ -76,9 +80,9 @@ public class SpawnerBehavior : MonoBehaviour
     private void SpawnWall()
     {
         rand = UnityEngine.Random.Range(0, treadmillWidth);
-        rand2 = UnityEngine.Random.Range(0, walls.Count);
         for (int i = 0; i < treadmillWidth; i++)
         {
+            rand2 = UnityEngine.Random.Range(0, walls.Count);
             if (i == rand)
             {
                 entity = Instantiate(walls[rand2], new Vector3(transform.position.x + i * spaceBetweenWall, transform.position.y, transform.position.z), Quaternion.identity);

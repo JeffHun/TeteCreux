@@ -14,13 +14,11 @@ public class ReplayOrQuit : MonoBehaviour
     {
         if (collision.CompareTag("Hand") && handCount == 2 && !quit)
         {
-            Debug.Log("yes");
             gameManager.GetComponent<GameManager>().Replay();
             handCount = 0;
         }
         if (collision.CompareTag("Hand") && handCount == 2 && quit)
         {
-            Debug.Log("yes");
             gameManager.GetComponent<GameManager>().Quit();
             handCount = 0;
         }
