@@ -43,7 +43,6 @@ public class ScoreBehavior : MonoBehaviour
         if (move)
         {
             timeCount += Time.deltaTime * rotationSpeed;
-            Debug.Log(timeCount);
             from.localRotation = Quaternion.Lerp(start, to, timeCount);
             if (timeCount > 1)
             {

@@ -77,7 +77,6 @@ public class GameManager : MonoBehaviour
 
     private void Lose()
     {
-        Debug.Log("Lose");
         loose = true;
         speed = 0;
         spawnFrequency = 0;
@@ -92,8 +91,7 @@ public class GameManager : MonoBehaviour
 
     public void Replay()
     {
-        life = 3;
-        SetLife(0);
+        StartCoroutine(ReloadLife());
         score = 0;
         scoreBehavior.GetComponent<ScoreBehavior>().ScoreUpdate(0);   
         speed = originalSpeed;
@@ -104,11 +102,21 @@ public class GameManager : MonoBehaviour
         {
             Destroy(clones[i]);
         }
-        //si je suis pas à trois je setlife jus'quà l'etre
+    }
+
+    IEnumerator ReloadLife()
+    {
+        if(life<3)
+        {
+            SetLife(1);
+            yield return new WaitForSeconds(1f);
+            StartCoroutine(ReloadLife());
+        }
     }
 
     public void Quit()
     {
+        Debug.Log("Lâche");
         Application.Quit();
     }
 }
