@@ -35,11 +35,10 @@ public class SpawnerBehavior : MonoBehaviour
         loose = gameManager.GetComponent<GameManager>().GetLoose();
 
         timer += Time.deltaTime;
-        //rand = UnityEngine.Random.Range(0, 2);
 
         if (timer > spawnFrequency && !loose)
         {
-            //rand = UnityEngine.Random.Range(0, 2);
+            rand = UnityEngine.Random.Range(0, 2);
 
             if (rand == 1)
                 SpanwWoodenSign();

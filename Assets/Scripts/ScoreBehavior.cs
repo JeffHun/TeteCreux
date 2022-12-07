@@ -38,6 +38,14 @@ public class ScoreBehavior : MonoBehaviour
             scoreA.text = score.ToString();
     }
 
+    public void ResetRotation()
+    {
+        to = Quaternion.Euler(0f, 0f, 0f);
+        scoreA.text = "0";
+        scoreB.text = "0";
+        move = true;
+    }
+
     void Update()
     {
         if (move)

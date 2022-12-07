@@ -1,3 +1,4 @@
+using OculusSampleFramework;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     private float timeCount = 0;
     public float rotationSpeed;
     private Transform from;
+    private Transform originalFrom;
     private Quaternion to;
     private Quaternion start;
     public float speed;
@@ -34,6 +36,11 @@ public class GameManager : MonoBehaviour
         score += aScore;
         Debug.Log(score);
         scoreBehavior.GetComponent<ScoreBehavior>().ScoreUpdate(score);
+    }
+
+    private void Start()
+    {
+        originalFrom = transform;
     }
 
     private void Awake()
@@ -107,22 +114,21 @@ public class GameManager : MonoBehaviour
 
     public void Replay()
     {
-        StartCoroutine(ReloadLife());
+        speed = 0;
+        spawnFrequency = 0;
+        clones = spawnBehavior.GetComponent<SpawnerBehavior>().GetClones();
+        for (int i = 0; i < clones.Count; i++)
+        {
+            Destroy(clones[i]);
+        }
+        to = Quaternion.Euler(0f, 0f, 0f);
+        move = true;
+        life = 3;
         score = 0;
-        scoreBehavior.GetComponent<ScoreBehavior>().ScoreUpdate(0);   
+        scoreBehavior.GetComponent<ScoreBehavior>().ResetRotation();
         speed = originalSpeed;
         spawnFrequency = originalFrequency;
         loose = false;
-    }
-
-    IEnumerator ReloadLife()
-    {
-        if(life<3)
-        {
-            SetLife(1);
-            yield return new WaitForSeconds(1f);
-            StartCoroutine(ReloadLife());
-        }
     }
 
     public void Quit()
