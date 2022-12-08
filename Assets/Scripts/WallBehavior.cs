@@ -43,6 +43,9 @@ public class WallBehavior : MonoBehaviour
             audiosource.Play();
             judgePlus50.GetComponent<JudgeBehavior>().JudgeStand();
 
+            OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.RTouch);
+            OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.LTouch);
+
             Destroy(gameObject);
         }
     }

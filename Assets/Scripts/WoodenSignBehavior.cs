@@ -49,5 +49,13 @@ public class WoodenSignBehavior : MonoBehaviour
             player.GetComponent<EntityCollisionBehavior>().Collision(gameObject, true);
             anim = true;
         }
+        if(collision.gameObject.name == "HandL")
+        {
+            OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.LTouch);
+        }
+        if (collision.gameObject.name == "HandR")
+        {
+            OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.RTouch);
+        }
     }
 }
