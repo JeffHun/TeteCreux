@@ -51,11 +51,11 @@ public class WoodenSignBehavior : MonoBehaviour
         }
         if(collision.gameObject.name == "HandL")
         {
-            OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.LTouch);
+            OVRInput.SetControllerVibration(.25f, 1, OVRInput.Controller.LTouch);
         }
         if (collision.gameObject.name == "HandR")
         {
-            OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.RTouch);
+            OVRInput.SetControllerVibration(.25f, 1, OVRInput.Controller.RTouch);
         }
     }
 }

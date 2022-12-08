@@ -7954,7 +7954,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Scoreu
+  m_text: Skoreu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3ed7d23bd432d75408e5ce3c41063543, type: 2}
   m_sharedMaterial: {fileID: -2763633181879620292, guid: 3ed7d23bd432d75408e5ce3c41063543, type: 2}

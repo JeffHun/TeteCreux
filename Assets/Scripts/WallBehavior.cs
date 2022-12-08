@@ -31,20 +31,20 @@ public class WallBehavior : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.transform.gameObject.GetComponent<EntityCollisionBehavior>().Collision(gameObject, false);
-            Instantiate(particuleSystem, new Vector3(transform.position.x, transform.position.y+1.7f, transform.position.z), Quaternion.identity);
+            Instantiate(particuleSystem, new Vector3(transform.position.x-0.35f, transform.position.y+1.7f, transform.position.z), Quaternion.Euler(-90f, 0f, 0f));
             Destroy(gameObject);
         }
 
         if (collision.CompareTag("Hand") && handCount == 2)
         {
-            Instantiate(particuleSystem, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            Instantiate(particuleSystem, new Vector3(transform.position.x-0.35f, transform.position.y+1.7f, transform.position.z), Quaternion.Euler(-90f, 0f, 0f));
             gameManager.GetComponent<GameManager>().SetScore(5);
             audiosource.clip = breakingWall;
             audiosource.Play();
             judgePlus50.GetComponent<JudgeBehavior>().JudgeStand();
 
-            OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.RTouch);
-            OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.LTouch);
+            OVRInput.SetControllerVibration(.25f, .25f, OVRInput.Controller.RTouch);
+            OVRInput.SetControllerVibration(.25f, .25f, OVRInput.Controller.LTouch);
 
             Destroy(gameObject);
         }
