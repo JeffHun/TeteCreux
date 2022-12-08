@@ -31,7 +31,7 @@ public class WallBehavior : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.transform.gameObject.GetComponent<EntityCollisionBehavior>().Collision(gameObject, false);
-            Instantiate(particuleSystem, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            Instantiate(particuleSystem, new Vector3(transform.position.x, transform.position.y+1.7f, transform.position.z), Quaternion.identity);
             Destroy(gameObject);
         }
 
