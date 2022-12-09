@@ -32,6 +32,7 @@ public class WoodenSignBehavior : MonoBehaviour
         {
             transform.rotation = Quaternion.AngleAxis(90, Vector3.right);
             rb.velocity = transform.up * speed * -1;
+            gameObject.tag = "Untagged";
         }else
         rb.velocity = transform.forward * speed * -1;
 
@@ -42,6 +43,7 @@ public class WoodenSignBehavior : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.GetComponent<EntityCollisionBehavior>().Collision(gameObject, false);
+            anim = true;
         }
 
         if (collision.gameObject.CompareTag("Hand"))
@@ -51,11 +53,18 @@ public class WoodenSignBehavior : MonoBehaviour
         }
         if(collision.gameObject.name == "HandL")
         {
-            OVRInput.SetControllerVibration(.25f, 1, OVRInput.Controller.LTouch);
+
+            StartCoroutine(ControllerVibration(OVRInput.Controller.LTouch));
         }
         if (collision.gameObject.name == "HandR")
         {
-            OVRInput.SetControllerVibration(.25f, 1, OVRInput.Controller.RTouch);
+            StartCoroutine(ControllerVibration(OVRInput.Controller.RTouch));
         }
+    }
+    IEnumerator ControllerVibration(OVRInput.Controller controller)
+    {
+        OVRInput.SetControllerVibration(1f, 1f, controller);
+        yield return new WaitForSeconds(0.1f);
+        OVRInput.SetControllerVibration(0f, 0f, controller);
     }
 }

@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
     public void SetScore(int aScore)
     {
         score += aScore;
-        Debug.Log(score);
         scoreBehavior.GetComponent<ScoreBehavior>().ScoreUpdate(score);
     }
 
@@ -106,6 +105,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(clones[i]);
         }
+
     }
 
     public bool GetLoose()

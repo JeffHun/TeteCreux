@@ -9,6 +9,18 @@ public class ReplayOrQuit : MonoBehaviour
     private int handCount;
     public GameManager gameManager;
     public bool quit;
+    private bool loose;
+    private float wave;
+    private Transform tf;
+    private float tfOrigin;
+    public float speed;
+    private float timer;
+
+    private void Start()
+    {
+        tf = gameObject.transform.parent.gameObject.transform;
+        tfOrigin = gameObject.transform.parent.gameObject.transform.position.z;
+    }
 
     private void OnTriggerEnter(Collider collision)
     {
@@ -27,5 +39,24 @@ public class ReplayOrQuit : MonoBehaviour
     public void HandDetected()
     {
         handCount++;
+    }
+
+    private void Update()
+    {
+        loose = gameManager.GetComponent<GameManager>().GetLoose();
+
+        if (loose)
+        {
+            if(timer >= Mathf.PI)
+                timer = Mathf.PI;
+            else
+                timer += Time.deltaTime;
+            wave = Mathf.Sin(timer * speed);
+            tf.position = new Vector3(tf.position.x, tf.position.y, tfOrigin + wave);
+        }
+        if(!loose)
+        {
+            tf.position = new Vector3(tf.position.x, tf.position.y, tfOrigin);
+        }
     }
 }

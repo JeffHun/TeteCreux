@@ -56,8 +56,8 @@ public class SpawnerBehavior : MonoBehaviour
     private void SpanwWoodenSign()
     {
         rand = UnityEngine.Random.Range(0, treadmillWidth);
-        //rand2 = UnityEngine.Random.Range(0, 2);
-        rand2 = 0;
+        rand2 = UnityEngine.Random.Range(0, 2);
+        //rand2 = 0;
         rand3 = UnityEngine.Random.Range(0, badPeoples.Count);
         if (rand2 == 1)
         {

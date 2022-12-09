@@ -43,6 +43,7 @@ public class ScoreBehavior : MonoBehaviour
         to = Quaternion.Euler(0f, 0f, 0f);
         scoreA.text = "0";
         scoreB.text = "0";
+        currentScoreIsA = false;
         move = true;
     }
 

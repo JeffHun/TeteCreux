@@ -42,12 +42,18 @@ public class WallBehavior : MonoBehaviour
             audiosource.clip = breakingWall;
             audiosource.Play();
             judgePlus50.GetComponent<JudgeBehavior>().JudgeStand();
-
-            OVRInput.SetControllerVibration(.25f, .25f, OVRInput.Controller.RTouch);
-            OVRInput.SetControllerVibration(.25f, .25f, OVRInput.Controller.LTouch);
-
+            StartCoroutine(ControllerVibration());
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator ControllerVibration()
+    {
+        OVRInput.SetControllerVibration(1f, 1f, OVRInput.Controller.LTouch);
+        OVRInput.SetControllerVibration(1f, 1f, OVRInput.Controller.RTouch);
+        yield return new WaitForSeconds(0.1f);
+        OVRInput.SetControllerVibration(0f, 0f, OVRInput.Controller.LTouch);
+        OVRInput.SetControllerVibration(0f, 0f, OVRInput.Controller.RTouch);
     }
 
     public void HandDetected()
